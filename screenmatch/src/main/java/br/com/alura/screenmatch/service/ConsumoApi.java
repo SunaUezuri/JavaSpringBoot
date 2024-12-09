@@ -16,14 +16,21 @@ public class ConsumoApi {
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(endereco))
                     .build();
+            //Objeto para receber uma lista de Strings
             HttpResponse<String> response = null;
             try {
+                /*
+                * Criando um response utilizando o client para indicar
+                * o tipo de informação que ele deve receber e como
+                * ele deve o manejar
+                */
                 response = client
                         .send(request, HttpResponse.BodyHandlers.ofString());
+
+                //Exceções para caso haja algum tipo de erro
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-
         String json = response.body();
             return json;
     }
