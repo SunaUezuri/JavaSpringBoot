@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.main;
 
+import br.com.alura.screenmatch.model.DadosEpisodio;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.service.ConsumoApi;
@@ -48,5 +49,16 @@ public class Main {
 			temporadas.add(dadosTemporada);
 		}
 		temporadas.forEach(System.out::println);
+
+//        for(int i = 0; i < dados.totalTemporadas(); i++){
+//            List<DadosEpisodio> episodios = temporadas.get(i).episodios();
+//
+//            for(int j = 0; j < episodios.size(); j++){
+//                System.out.println(episodios.get(j).titulo());
+//            }
+//        }
+
+        // "->" = LAMBDA, são funções que são utilizados para melhorar a visualização do código, semelhante às Arrow Functions
+        temporadas.forEach(t -> t.episodios().forEach(e -> System.out.println(e.titulo())));
     }
 }
