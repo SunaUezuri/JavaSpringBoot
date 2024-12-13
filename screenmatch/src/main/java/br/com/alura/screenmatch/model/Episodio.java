@@ -22,8 +22,6 @@ public class Episodio {
     }
 
     //Construtores da classe
-
-
     public Episodio(Integer numeroTemporada, DadosEpisodio dadosEpisodio) {
         this.temporada = numeroTemporada;
         this.titulo = dadosEpisodio.titulo();
@@ -40,7 +38,6 @@ public class Episodio {
         } catch (DateTimeParseException ex){
             this.dataLancamento = null;
         }
-
 
     }
 
@@ -84,4 +81,5 @@ public class Episodio {
     public void setDataLancamento(LocalDate dataLancamento) {
         this.dataLancamento = dataLancamento;
     }
+
 }
