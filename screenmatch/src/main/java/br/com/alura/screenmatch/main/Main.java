@@ -9,10 +9,7 @@ import br.com.alura.screenmatch.service.ConverteDados;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -85,20 +82,47 @@ public class Main {
 
         episodios.forEach(System.out::println);
 
-        System.out.println("A partir de qual ano você deseja ver os episódios? ");
-        var ano = leitura.nextInt();
-        leitura.nextLine();
+        System.out.println("\nDigite o nome de um episódio: ");
 
-        LocalDate dataBusca = LocalDate.of(ano, 1, 1);
+        var trechoTitulo = leitura.nextLine();
 
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        /*
+        * Optional = é um container que serve para representar
+        * um valor que pode ou não estar ausente ajudando a
+        * evitar erros relacionados a valores nulos, como
+        * o NullPointerException
+        *
+        * 1. Indica explicitamente que um valor pode não estar presente.
+        *
+        * 2. Fornece métodos para lidar com o valor de forma segura,
+        * eliminando a necessidade de verificações manuais de null.
+        */
+        Optional<Episodio> episodioBuscado = episodios.stream()
+                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+                .findFirst();
 
-        episodios.stream()
-                .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
-                .forEach(e -> System.out.println(
-                        "Temporada: " + e.getTemporada() +
-                                " Episódio: " + e.getTitulo() +
-                                " Data de Lançamento: " + e.getDataLancamento().format(formatador)
-                ));
+        //Verificando este objeto para verificar se a instância existe
+        if (episodioBuscado.isPresent()){
+            System.out.println("Episódio encontrado!");
+            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
+        } else {
+            System.out.println("Episódio não encontrado!");
+        }
+
+//        System.out.println("A partir de qual ano você deseja ver os episódios? ");
+//        var ano = leitura.nextInt();
+//        leitura.nextLine();
+//
+//        LocalDate dataBusca = LocalDate.of(ano, 1, 1);
+//
+//        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//
+//        episodios.stream()
+//                .filter(e -> e.getDataLancamento() != null && e.getDataLancamento().isAfter(dataBusca))
+//                .forEach(e -> System.out.println(
+//                        "Temporada: " + e.getTemporada() +
+//                                " Episódio: " + e.getTitulo() +
+//                                " Data de Lançamento: " + e.getDataLancamento().format(formatador)
+//                ));
     }
 }
