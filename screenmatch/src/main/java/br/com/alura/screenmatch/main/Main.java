@@ -82,9 +82,9 @@ public class Main {
 
         episodios.forEach(System.out::println);
 
-        System.out.println("\nDigite o nome de um episódio: ");
-
-        var trechoTitulo = leitura.nextLine();
+//        System.out.println("\nDigite o nome de um episódio: ");
+//
+//        var trechoTitulo = leitura.nextLine();
 
         /*
         * Optional = é um container que serve para representar
@@ -97,17 +97,17 @@ public class Main {
         * 2. Fornece métodos para lidar com o valor de forma segura,
         * eliminando a necessidade de verificações manuais de null.
         */
-        Optional<Episodio> episodioBuscado = episodios.stream()
-                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
-                .findFirst();
-
-        //Verificando este objeto para verificar se a instância existe
-        if (episodioBuscado.isPresent()){
-            System.out.println("Episódio encontrado!");
-            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
-        } else {
-            System.out.println("Episódio não encontrado!");
-        }
+//        Optional<Episodio> episodioBuscado = episodios.stream()
+//                .filter(e -> e.getTitulo().toUpperCase().contains(trechoTitulo.toUpperCase()))
+//                .findFirst();
+//
+//        //Verificando este objeto para verificar se a instância existe
+//        if (episodioBuscado.isPresent()){
+//            System.out.println("Episódio encontrado!");
+//            System.out.println("Temporada: " + episodioBuscado.get().getTemporada());
+//        } else {
+//            System.out.println("Episódio não encontrado!");
+//        }
 
 //        System.out.println("A partir de qual ano você deseja ver os episódios? ");
 //        var ano = leitura.nextInt();
@@ -124,5 +124,13 @@ public class Main {
 //                                " Episódio: " + e.getTitulo() +
 //                                " Data de Lançamento: " + e.getDataLancamento().format(formatador)
 //                ));
+
+        //Exibindo as avaliações por temporada
+        Map<Integer, Double> avaliacoesPorTemporada = episodios.stream()
+                .filter(e -> e.getAvaliacao() > 0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                        Collectors.averagingDouble(Episodio::getAvaliacao)));
+
+        System.out.println(avaliacoesPorTemporada);
     }
 }
