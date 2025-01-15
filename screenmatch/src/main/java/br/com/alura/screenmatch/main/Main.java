@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 public class Main {
 
     //Scanner para ler as informações
-    private final Scanner leitura = new Scanner(System.in);
+    private Scanner leitura = new Scanner(System.in);
 
-    private final ConsumoApi consumoApi = new ConsumoApi();
-    private final ConverteDados conversor = new ConverteDados();
+    private ConsumoApi consumoApi = new ConsumoApi();
+    private ConverteDados conversor = new ConverteDados();
 
     //Criando constantes para representar as informações da API
     private static final String ENDERECO = "http://www.omdbapi.com/?t=";
