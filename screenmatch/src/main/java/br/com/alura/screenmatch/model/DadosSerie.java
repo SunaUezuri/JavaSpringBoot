@@ -9,6 +9,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 //Fazendo com que o JSON ignore as propriedades que não queremos que sejam mapeadas
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record DadosSerie(@JsonAlias("Title") String titulo,
+                         @JsonAlias("Poster") String poster,
                          @JsonAlias("totalSeasons") Integer totalTemporadas,
+                         @JsonAlias("Actors") String atores,
+                         @JsonAlias("Genre") String genero,
+                         @JsonAlias("Plot") String sinopse,
                          @JsonAlias("imdbRating") String avaliacao) {
 }
