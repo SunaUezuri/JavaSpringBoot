@@ -101,11 +101,7 @@ public class Main {
     //Método para exibir todas as séries buscadas pelo usuário anteriormente
     private void listarSeriesBuscadas(){
 
-        List<Serie> series;
-        series = dadosSeries.stream()
-                        .map(d -> new Serie(d))
-                            .collect(Collectors.toList());
-
+        List<Serie> series = repositorio.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);

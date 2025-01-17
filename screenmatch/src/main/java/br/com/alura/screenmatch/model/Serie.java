@@ -51,7 +51,9 @@ public class Serie {
                 "\nAvaliação: " + avaliacao + "\n";
     }
 
-    //Construtor da classe
+    //Construtores da classe
+    public Serie() {}
+
     public Serie(DadosSerie dadosSerie){
         this.titulo = dadosSerie.titulo();
         this.poster = dadosSerie.poster();
