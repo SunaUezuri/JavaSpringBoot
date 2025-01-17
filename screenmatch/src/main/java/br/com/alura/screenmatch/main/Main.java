@@ -3,6 +3,7 @@ package br.com.alura.screenmatch.main;
 import br.com.alura.screenmatch.model.DadosSerie;
 import br.com.alura.screenmatch.model.DadosTemporada;
 import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
 
@@ -22,6 +23,12 @@ public class Main {
     private static final String API_KEY = "&apikey=961ef0ac";
 
     private List<DadosSerie> dadosSeries = new ArrayList<>();
+
+    private SerieRepository repositorio;
+
+    public Main(SerieRepository repositorio) {
+        this.repositorio = repositorio;
+    }
 
     //Método para exibir o menu
     public void exibeMenu() {
@@ -64,7 +71,9 @@ public class Main {
     //Método para exibir os dados da série
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        dadosSeries.add(dados);
+        //dadosSeries.add(dados);
+        Serie serie = new Serie(dados);
+        repositorio.save(serie);
         System.out.println(dados);
     }
 
@@ -92,7 +101,7 @@ public class Main {
     //Método para exibir todas as séries buscadas pelo usuário anteriormente
     private void listarSeriesBuscadas(){
 
-        List<Serie> series = new ArrayList<>();
+        List<Serie> series;
         series = dadosSeries.stream()
                         .map(d -> new Serie(d))
                             .collect(Collectors.toList());
