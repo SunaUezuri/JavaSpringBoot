@@ -20,7 +20,7 @@ public class Main {
 
     //Criando constantes para representar as informações da API
     private static final String ENDERECO = "http://www.omdbapi.com/?t=";
-    private static final String API_KEY = "&apikey=961ef0ac";
+    private static final String API_KEY = "&apikey=" + System.getenv("OMDB_API");
 
     private List<DadosSerie> dadosSeries = new ArrayList<>();
 
