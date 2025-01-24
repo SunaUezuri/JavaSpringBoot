@@ -36,7 +36,7 @@ public class Serie {
 
     private Double avaliacao;
 
-    @OneToMany(mappedBy = "serie")
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
     private List<Episodio> episodios = new ArrayList<>();
 
     //toString para uma melhor exibição no terminal
