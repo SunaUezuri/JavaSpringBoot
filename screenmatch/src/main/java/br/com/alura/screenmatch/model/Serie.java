@@ -36,7 +36,7 @@ public class Serie {
 
     private Double avaliacao;
 
-    @Transient
+    @OneToMany(mappedBy = "serie")
     private List<Episodio> episodios = new ArrayList<>();
 
     //toString para uma melhor exibição no terminal
