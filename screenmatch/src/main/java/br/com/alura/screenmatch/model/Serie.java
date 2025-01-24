@@ -36,7 +36,7 @@ public class Serie {
 
     private Double avaliacao;
 
-    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
     //toString para uma melhor exibição no terminal
@@ -48,7 +48,8 @@ public class Serie {
                 "\nTotal de temporadas: " + totalTemporadas +
                 "\nAtores: " + atores +
                 "\nSinopse: " + sinopse +
-                "\nAvaliação: " + avaliacao + "\n";
+                "\nAvaliação: " + avaliacao +
+                "\nEpisodios: " + episodios + "\n";
     }
 
     //Construtores da classe
@@ -136,6 +137,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
         this.episodios = episodios;
     }
 }
