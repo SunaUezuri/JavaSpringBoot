@@ -27,8 +27,8 @@ public class Episodio {
     @Override
     public String toString() {
         return "Episódio " + numeroEpisodio + ": " + titulo
-                + "\nData de lançamento: " + dataLancamento +
-                "\nAvaliação: " + avaliacao + "\n";
+                + ", Data de lançamento: " + dataLancamento +
+                ", Avaliação: " + avaliacao;
     }
 
     //Construtores da classe

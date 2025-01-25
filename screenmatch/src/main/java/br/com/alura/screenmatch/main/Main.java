@@ -41,6 +41,8 @@ public class Main {
                     1 - Buscar séries
                     2 - Buscar episódios
                     3 - Listar séries buscadas
+                    4 - Buscar série por título
+                    5 - Buscar séries por ator
                                     
                     0 - Sair                                 
                     """;
@@ -59,6 +61,14 @@ public class Main {
 
                 case 3:
                     listarSeriesBuscadas();
+                    break;
+
+                case 4:
+                    buscarSeriePorTitulo();
+                    break;
+
+                case 5:
+                    buscarSeriesPorAtor();
                     break;
 
                 case 0:
@@ -93,9 +103,7 @@ public class Main {
         System.out.println("Digite o nome da série desejada: ");
         var nomeSerie = leitura.nextLine();
 
-        Optional<Serie> serie = series.stream()
-                .filter(s -> s.getTitulo().toLowerCase().contains(nomeSerie.toLowerCase()))
-                .findFirst();
+        Optional<Serie> serie = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
 
         if (serie.isPresent()){
             var serieEncontrada = serie.get();
@@ -131,5 +139,26 @@ public class Main {
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
+    }
+
+    private void buscarSeriePorTitulo() {
+        System.out.println("Escolha uma série pelo nome: ");
+        var nomeSerie = leitura.nextLine();
+        Optional<Serie> serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+
+        if (serieBuscada.isPresent()){
+            System.out.println("Dados da série: \n" + serieBuscada.get());
+        } else {
+            System.out.println("Série não encontrada!");
+        }
+    }
+
+    private void buscarSeriesPorAtor() {
+        System.out.println("Insira o nome do autor");
+        var nomeAutor = leitura.nextLine();
+        List<Serie> seriesEncontradas = repositorio.findByAtoresContainingIgnoreCase(nomeAutor);
+        System.out.println("Séries em que " + nomeAutor + " atua: ");
+        seriesEncontradas.forEach(s ->
+                System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
     }
 }

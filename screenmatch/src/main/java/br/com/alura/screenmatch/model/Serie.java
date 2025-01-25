@@ -42,14 +42,14 @@ public class Serie {
     //toString para uma melhor exibição no terminal
     @Override
     public String toString() {
-        return "Titulo: " + titulo +
-                "\nPoster: " + poster +
-                "\nGênero: " + genero +
-                "\nTotal de temporadas: " + totalTemporadas +
-                "\nAtores: " + atores +
-                "\nSinopse: " + sinopse +
-                "\nAvaliação: " + avaliacao +
-                "\nEpisodios: " + episodios + "\n";
+        return "[Titulo: " + titulo +
+                ", Poster: " + poster +
+                ", Gênero: " + genero +
+                ", Total de temporadas: " + totalTemporadas +
+                ", Atores: " + atores +
+                ", Sinopse: " + sinopse +
+                ", Avaliação: " + avaliacao +
+                ", Episodios: " + episodios + "]";
     }
 
     //Construtores da classe
