@@ -1,9 +1,6 @@
 package br.com.alura.screenmatch.main;
 
-import br.com.alura.screenmatch.model.DadosSerie;
-import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Episodio;
-import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.screenmatch.model.*;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoApi;
 import br.com.alura.screenmatch.service.ConverteDados;
@@ -44,6 +41,8 @@ public class Main {
                     4 - Buscar série por título
                     5 - Buscar séries por ator
                     6 - Melhores séries
+                    7 - Buscar séries por gênero
+                    8 - Buscar séries pela quantidade de temporadas
                                     
                     0 - Sair                                 
                     """;
@@ -74,6 +73,14 @@ public class Main {
 
                 case 6:
                     buscarTop5Series();
+                    break;
+
+                case 7:
+                    buscarSeriesPorCategoria();
+                    break;
+
+                case 8:
+                    buscarSeriesQuantidadeDeTemporadas();
                     break;
 
                 case 0:
@@ -174,4 +181,26 @@ public class Main {
         series.forEach(s ->
                 System.out.println("Série: " + s.getTitulo() + " Avaliação: " + s.getAvaliacao()));
     }
+
+    private void buscarSeriesPorCategoria() {
+        System.out.println("Digite o gênero que deseja pesquisar: ");
+        var nomeGenero = leitura.nextLine();
+        Genero genero = Genero.fromPortugues(nomeGenero);
+        List<Serie> series = repositorio.findByGenero(genero);
+        System.out.println("Séries da categoria: " + nomeGenero);
+        series.forEach(System.out::println);
+    }
+
+    private void buscarSeriesQuantidadeDeTemporadas() {
+        System.out.println("Insira a quantidade de temporadas: ");
+        var temporadas = leitura.nextInt();
+        System.out.println("Insira a avaliação mínima: ");
+        var avaliacao = leitura.nextDouble();
+
+        List<Serie> series = repositorio
+                .findByTotalTemporadasAndAvaliacaoGreaterThanEqual(temporadas, avaliacao);
+
+        series.forEach(System.out::println);
+    }
+
 }
