@@ -200,8 +200,7 @@ public class Main {
         System.out.println("Séries filtradas: ");
 
         List<Serie> series = repositorio
-                .findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(temporadas, avaliacao);
-
+                .seriesPorTemporadaEAvaliacao(temporadas, avaliacao);
         series.forEach(System.out::println);
     }
 
