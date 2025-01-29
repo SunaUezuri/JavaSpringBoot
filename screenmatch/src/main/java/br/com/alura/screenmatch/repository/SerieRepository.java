@@ -16,5 +16,5 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
 
     List<Serie> findByGenero(Genero genero);
 
-    List<Serie> findByTotalTemporadasAndAvaliacaoGreaterThanEqual(Integer temporadas, Double avaliacao);
+    List<Serie> findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(Integer temporadas, Double avaliacao);
 }

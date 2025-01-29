@@ -197,8 +197,10 @@ public class Main {
         System.out.println("Insira a avaliação mínima: ");
         var avaliacao = leitura.nextDouble();
 
+        System.out.println("Séries filtradas: ");
+
         List<Serie> series = repositorio
-                .findByTotalTemporadasAndAvaliacaoGreaterThanEqual(temporadas, avaliacao);
+                .findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(temporadas, avaliacao);
 
         series.forEach(System.out::println);
     }
