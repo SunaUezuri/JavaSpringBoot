@@ -43,6 +43,7 @@ public class Main {
                     3 - Listar séries buscadas
                     4 - Buscar série por título
                     5 - Buscar séries por ator
+                    6 - Melhores séries
                                     
                     0 - Sair                                 
                     """;
@@ -71,6 +72,10 @@ public class Main {
                     buscarSeriesPorAtor();
                     break;
 
+                case 6:
+                    buscarTop5Series();
+                    break;
+
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -83,7 +88,6 @@ public class Main {
     //Método para exibir os dados da série
     private void buscarSerieWeb() {
         DadosSerie dados = getDadosSerie();
-        //dadosSeries.add(dados);
         Serie serie = new Serie(dados);
         repositorio.save(serie);
         System.out.println(dados);
@@ -154,11 +158,20 @@ public class Main {
     }
 
     private void buscarSeriesPorAtor() {
-        System.out.println("Insira o nome do autor");
+        System.out.println("Insira o nome do ator");
         var nomeAutor = leitura.nextLine();
-        List<Serie> seriesEncontradas = repositorio.findByAtoresContainingIgnoreCase(nomeAutor);
+        System.out.println("Avaliações a partir de que valor?");
+        var avaliacao = leitura.nextDouble();
+        List<Serie> seriesEncontradas = repositorio
+                .findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAutor, avaliacao);
         System.out.println("Séries em que " + nomeAutor + " atua: ");
         seriesEncontradas.forEach(s ->
                 System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarTop5Series() {
+        List<Serie> series = repositorio.findTop5ByOrderByAvaliacaoDesc();
+        series.forEach(s ->
+                System.out.println("Série: " + s.getTitulo() + " Avaliação: " + s.getAvaliacao()));
     }
 }
