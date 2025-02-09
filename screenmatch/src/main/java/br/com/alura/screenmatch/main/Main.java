@@ -43,6 +43,7 @@ public class Main {
                     6 - Melhores séries
                     7 - Buscar séries por gênero
                     8 - Buscar séries pela quantidade de temporadas
+                    9 - Buscar um episódio por trecho
                                     
                     0 - Sair                                 
                     """;
@@ -81,6 +82,10 @@ public class Main {
 
                 case 8:
                     buscarSeriesQuantidadeDeTemporadas();
+                    break;
+
+                case 9:
+                    buscarEpisodioPorTrecho();
                     break;
 
                 case 0:
@@ -202,6 +207,14 @@ public class Main {
         List<Serie> series = repositorio
                 .seriesPorTemporadaEAvaliacao(temporadas, avaliacao);
         series.forEach(System.out::println);
+    }
+
+    private void buscarEpisodioPorTrecho(){
+        System.out.println("Insira um trecho do título do episódio");
+        var trecho = leitura.nextLine();
+
+        List<Episodio> episodiosEncontrados = repositorio.episodiosPorTrecho(trecho);
+        episodiosEncontrados.forEach(System.out::println);
     }
 
 }
