@@ -6,7 +6,7 @@ ScreenMatch é uma aplicação desenvolvida com **Spring Boot** que consome a AP
 
 ## 🚀 Tecnologias Utilizadas
 
-📌 **Java 17**  
+📌 **Java 21**  
 📌 **Spring Boot 3.3.1**  
 📌 **Spring Data JPA**  
 📌 **PostgreSQL**  
@@ -49,7 +49,7 @@ ScreenMatch é uma aplicação desenvolvida com **Spring Boot** que consome a AP
 ## 🛠️ Como Rodar o Projeto no IntelliJ IDEA
 
 ### ✅ Pré-requisitos
-- **Java 17**
+- **Java 21**
 - **Maven**
 - **PostgreSQL** instalado e configurado
 - **IntelliJ IDEA**
