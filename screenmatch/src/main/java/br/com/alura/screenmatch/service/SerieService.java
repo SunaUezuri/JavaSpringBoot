@@ -60,7 +60,10 @@ public class SerieService {
     }
 
     public List<EpisodioDto> obterTemporadaPorNumero(Long id, Integer numero) {
-
+        return repositorio.obterEpisodiosPorTemporada(id, numero)
+                .stream()
+                .map(e -> new EpisodioDto(e.getTemporada(), e.getNumeroEpisodio(), e.getTitulo()))
+                .collect(Collectors.toList());
     }
 
     //Métodos privados da classe
